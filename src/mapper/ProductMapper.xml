@@ -19,6 +19,6 @@
       values(#{name},#{price},#{barcode})
   </insert>
   <delete id="deleteById" parameterType="id">
-      delete form produce where id=#{id}
+      delete form product where id=#{id}
   </delete>
 </mapper>

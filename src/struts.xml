@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<action name="login" class="action.UserAction" method="login">
+			<result name="success">/main.jsp</result>
+			<result name="error">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="logout" class="action.UserAction" method="logout">
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="addUser" class="action.UserAction" method="add">
+			<result name="success">/addUser.jsp</result>
+			<result name="error">/addUser.jsp</result>
+			<result name="input">/addUser.jsp</result>
+		</action>
+		<action name="listUser" class="action.UserAction" method="list">
+			<result name="success">/listUser.jsp</result>
+		</action>
+		<action name="deleteUser" class="action.UserAction" method="delete">
+			<result name="success" type="redirectAction">
+				<param name="actionName">listUser</param>
+			</result>
+		</action>
+		<action name="updateUserForm" class="action.UserAction" method="updateForm">
+			<result name="success" type="dispatcher">
+				<param name="location">/updateUser.jsp</param>
+			</result>
+		</action>
+		<action name="updateUser" class="action.UserAction" method="update">
+			<result name="success">/updateUser.jsp</result>
+			<result name="input">/updateUser.jsp</result>
+		</action>
+	</package>
+</struts>
