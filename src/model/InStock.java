@@ -1,6 +1,6 @@
 package model;
 //111
-//123
+//456
 import java.sql.Timestamp;
 
 public class InStock {
