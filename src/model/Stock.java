@@ -21,6 +21,12 @@ public int getProductId() {
 public void setProductId(int productId) {
 	this.productId = productId;
 }
+public Timestamp getInstocktime() {
+	return instocktime;
+}
+public void setInstocktime(Timestamp instocktime) {
+	this.instocktime = instocktime;
+}
 public int getAmount() {
 	return amount;
 }
