@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OutStockDetailMapper">
 
+<select id="selectById" parameterType="model.OutStockDetail">
+     select * from outstockdetail where id=#{id}
+  </select>
+  <select id="selectAll" resultType="model.OutStockDetail">
+      select * from outstockdetail 
+  </select>
+  <update id="upateOutStockDetail" parameterType="model.OutStockDetail">
+      update outstockdetail set outstockid=#{outstockid},productid=#{productid},amount=#{amount}
+		where id = #{id}
+  </update>
+  <insert id="insertOutStockDetail" useGeneratedKeys="true" keyProperty="id">
+      insert into outstockdetail(outstockid,productid,amount)
+      values(#{outstockid},#{productid},#{amount})
+  </insert>
+  <delete id="deleteById" parameterType="id">
+      delete form outstockdetail where id=#{id}
+  </delete>
 </mapper>
