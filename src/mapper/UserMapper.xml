@@ -17,8 +17,8 @@
 	<select id="selectById" parameterType="int" resultType="model.User">
 		select * from user where id=#{id}
 	</select>
-	<select id="selectByAll" resultType="model.User">
-		select * from user where type=1
+	<select id="selectAll" resultType="model.User">
+		select * from user where type = 1
 	</select>
 	
 	<update id="updateUser" parameterType="model.User">

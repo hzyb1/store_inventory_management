@@ -78,6 +78,8 @@ public class UserAction {
 	
 	public String checkAll() {
 		users = (ArrayList<User>) userServiceImpl.selectAllUser();
+		ActionContext.getContext().put("users", users);
+		System.out.println(users.size());
 		return "success";
 	}
 	

@@ -18,12 +18,12 @@
 			<result name="error">/addUser.jsp</result>
 			<result name="input">/addUser.jsp</result>
 		</action>
-		<action name="listUser" class="action.UserAction" method="list">
-			<result name="success">/listUser.jsp</result>
+		<action name="checkAll" class="action.UserAction" method="checkAll">
+			<result name="success">/user.jsp</result>
 		</action>
 		<action name="deleteUser" class="action.UserAction" method="delete">
 			<result name="success" type="redirectAction">
-				<param name="actionName">listUser</param>
+				<param name="actionName">checkAll</param>
 			</result>
 		</action>
 		<action name="updateUserForm" class="action.UserAction" method="updateForm">
