@@ -8,4 +8,5 @@ public interface UserService {
 	public Boolean updateUser(User user);	//更新用户
 	public User selectUserById(int id);	//选择
 	public List<User> selectAllUser();
+	public boolean deleteUser(int id);
 }

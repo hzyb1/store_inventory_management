@@ -49,8 +49,24 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<User> selectAllUser() {
+		List<User> users;
+		try{
+			sqlSession=DBTools.getSession(); 
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			users = userMapper.selectAll();			
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+		return users;
+	}
+	@Override
+	public boolean deleteUser(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 

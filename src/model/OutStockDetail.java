@@ -2,8 +2,8 @@ package model;
 
 public class OutStockDetail {
 	private int id;
-	private int outstockid;
-	private int productid;
+	private int outstockId;
+	private int productId;
 	private int amount;
 	public int getId() {
 		return id;
@@ -11,17 +11,18 @@ public class OutStockDetail {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getOutstockid() {
-		return outstockid;
+
+	public int getOutstockId() {
+		return outstockId;
 	}
-	public void setOutstockid(int outstockid) {
-		this.outstockid = outstockid;
+	public void setOutstockId(int outstockId) {
+		this.outstockId = outstockId;
 	}
-	public int getProductid() {
-		return productid;
+	public int getProductId() {
+		return productId;
 	}
-	public void setProductid(int productid) {
-		this.productid = productid;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 	public int getAmount() {
 		return amount;

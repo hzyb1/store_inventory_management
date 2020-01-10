@@ -5,9 +5,8 @@ import java.sql.Timestamp;
 
 public class InStock {
 private  int id;
-private  int supplierld;
-private Timestamp createtime;
-private Timestamp completetime;
+private  int supplierId;
+private Timestamp completeTime;
 private int approver;
 public int getId() {
 	return id;
@@ -15,25 +14,19 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public int getSupplierld() {
-	return supplierld;
-}
-public void setSupplierld(int supplierld) {
-	this.supplierld = supplierld;
-}
 
 
-public Timestamp getCreatetime() {
-	return createtime;
+public int getSupplierId() {
+	return supplierId;
 }
-public void setCreatetime(Timestamp createtime) {
-	this.createtime = createtime;
+public void setSupplierId(int supplierId) {
+	this.supplierId = supplierId;
 }
-public Timestamp getCompletetime() {
-	return completetime;
+public Timestamp getCompleteTime() {
+	return completeTime;
 }
-public void setCompletetime(Timestamp completetime) {
-	this.completetime = completetime;
+public void setCompleteTime(Timestamp completeTime) {
+	this.completeTime = completeTime;
 }
 public int getApprover() {
 	return approver;

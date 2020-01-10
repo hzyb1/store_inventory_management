@@ -2,8 +2,8 @@ package model;
 
 public class InStockDetail {
 private int id;
-private int instorkid;
-private int productid;
+private int instorkId;
+private int productId;
 private int amount;
 public int getId() {
 	return id;
@@ -11,17 +11,20 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public int getInstorkid() {
-	return instorkid;
+
+
+
+public int getInstorkId() {
+	return instorkId;
 }
-public void setInstorkid(int instorkid) {
-	this.instorkid = instorkid;
+public void setInstorkId(int instorkId) {
+	this.instorkId = instorkId;
 }
-public int getProductid() {
-	return productid;
+public int getProductId() {
+	return productId;
 }
-public void setProductid(int productid) {
-	this.productid = productid;
+public void setProductId(int productId) {
+	this.productId = productId;
 }
 public int getAmount() {
 	return amount;

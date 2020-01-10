@@ -6,9 +6,9 @@ public class Stock {
 private int id;
 private int productId;
 private int amount;
-private int areanumber;
-private int shelfnumber;
-private Timestamp instocktime;
+private int areaNumber;
+private int shelfNumber;
+private Timestamp instockTime;
 public int getId() {
 	return id;
 }
@@ -21,28 +21,30 @@ public int getProductId() {
 public void setProductId(int productId) {
 	this.productId = productId;
 }
-public Timestamp getInstocktime() {
-	return instocktime;
-}
-public void setInstocktime(Timestamp instocktime) {
-	this.instocktime = instocktime;
-}
+
 public int getAmount() {
 	return amount;
 }
 public void setAmount(int amount) {
 	this.amount = amount;
 }
-public int getAreanumber() {
-	return areanumber;
+public int getAreaNumber() {
+	return areaNumber;
 }
-public void setAreanumber(int areanumber) {
-	this.areanumber = areanumber;
+public void setAreaNumber(int areaNumber) {
+	this.areaNumber = areaNumber;
 }
-public int getShelfnumber() {
-	return shelfnumber;
+public int getShelfNumber() {
+	return shelfNumber;
 }
-public void setShelfnumber(int shelfnumber) {
-	this.shelfnumber = shelfnumber;
+public void setShelfNumber(int shelfNumber) {
+	this.shelfNumber = shelfNumber;
 }
+public Timestamp getInstockTime() {
+	return instockTime;
+}
+public void setInstockTime(Timestamp instockTime) {
+	this.instockTime = instockTime;
+}
+
 }
