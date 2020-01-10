@@ -1,5 +1,5 @@
 package mapper;
 
-public class OutStockMapper {
+public interface OutStockMapper {
 
 }

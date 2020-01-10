@@ -1,5 +1,5 @@
 package mapper;
 
-public class StockMappper {
+public interface StockMappper {
 
 }

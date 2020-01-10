@@ -1,5 +1,5 @@
 package mapper;
 
-public class ProductMapper {
+public interface ProductMapper {
 
 }

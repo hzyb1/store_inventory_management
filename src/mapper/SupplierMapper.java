@@ -1,5 +1,5 @@
 package mapper;
 
-public class SupplierMapper {
+public interface SupplierMapper {
 
 }
