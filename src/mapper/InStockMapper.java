@@ -1,5 +1,14 @@
 package mapper;
 
-public interface InStockMapper {
+import java.util.List;
 
+import model.InStock;
+import model.Stock;
+
+public interface InStockMapper {
+	public InStock selectById(int id);
+	public List<InStock> selectAll();
+	public boolean updateInStock(InStock inStock);
+	public boolean insertInStock(InStock inStock);
+	public boolean deleteById(int id);
 }
