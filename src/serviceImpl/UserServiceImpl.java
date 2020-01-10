@@ -31,20 +31,52 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public Boolean updateUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			sqlSession=DBTools.getSession(); 
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			boolean state = userMapper.updateUser(user);
+			sqlSession.commit();
+			return state;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
 	}
 
 	@Override
 	public User selectUserById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			sqlSession=DBTools.getSession(); 
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			User user = userMapper.selectById(id);
+			return user;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
 	}
 
 	@Override
 	public Boolean addUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			sqlSession=DBTools.getSession(); 
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			boolean state = userMapper.insertUser(user);
+			sqlSession.commit();
+			return state;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
 	}
 
 	@Override
@@ -65,7 +97,18 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public boolean deleteUser(int id) {
-		// TODO Auto-generated method stub
+		try{
+			sqlSession=DBTools.getSession(); 
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			boolean state = userMapper.deleteById(id);
+			sqlSession.commit();
+			return state;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+		}finally{
+			sqlSession.close();
+		}
 		return false;
 	}
 	

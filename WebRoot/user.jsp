@@ -64,7 +64,6 @@
 											</tr>
 											</s:iterator> 
 										</tbody>
-									
 									</table>
 								</div>
 								<!--分页显示角色信息 end-->
