@@ -67,6 +67,8 @@ public class UserServiceImpl implements UserService{
 		try{
 			sqlSession=DBTools.getSession(); 
 			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			User user1 = userMapper.selectByAccount(user.getAccount());
+			if(user1!=null) return false;
 			boolean state = userMapper.insertUser(user);
 			sqlSession.commit();
 			return state;

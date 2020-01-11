@@ -1,9 +1,10 @@
 package po;
 
-public class InStockVo {	//入库记录查找数据类
+import model.OutStock;
+
+public class OutStockVo {	//出库记录查找数据类
 	String id;
 	String productName;
-	String supplierName;
 	String approverName;
 	String amount;
 	String completeTime;
@@ -18,12 +19,6 @@ public class InStockVo {	//入库记录查找数据类
 	}
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-	public String getSupplierName() {
-		return supplierName;
-	}
-	public void setSupplierName(String supplierName) {
-		this.supplierName = supplierName;
 	}
 	public String getApproverName() {
 		return approverName;

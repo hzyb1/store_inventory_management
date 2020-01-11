@@ -13,27 +13,27 @@
 			<result name="input">/login.jsp</result>
 		</action>
 		
-		<action name="addUser" class="action.UserAction" method="add">
-			<result name="success">/addUser.jsp</result>
-			<result name="error">/addUser.jsp</result>
-			<result name="input">/addUser.jsp</result>
+		<action name="addUser" class="action.UserAction" method="addUser">
+			<result name="success">/user.jsp</result>
+			<result name="error">/user.jsp</result>
+			<result name="input">/user.jsp</result>
 		</action>
-		<action name="checkAll" class="action.UserAction" method="checkAll">
+		<action name="checkAllUser" class="action.UserAction" method="checkAllUser">
 			<result name="success">/user.jsp</result>
 		</action>
-		<action name="deleteUser" class="action.UserAction" method="delete">
-			<result name="success" type="redirectAction">
-				<param name="actionName">checkAll</param>
-			</result>
+		<action name="deleteUser" class="action.UserAction" method="deleteUser">
+			<result name="success">/user.jsp</result>
 		</action>
 		<action name="updateUserForm" class="action.UserAction" method="updateForm">
-			<result name="success" type="dispatcher">
+			<result name="error" type="dispatcher">
 				<param name="location">/updateUser.jsp</param>
 			</result>
-		</action>
-		<action name="updateUser" class="action.UserAction" method="update">
+		
 			<result name="success">/updateUser.jsp</result>
-			<result name="input">/updateUser.jsp</result>
+		</action>
+		<action name="updateUser" class="action.UserAction" method="updateUser">
+			<result name="success">/user.jsp</result>
+			<result name="input">/user.jsp</result>
 		</action>
 	</package>
 </struts>

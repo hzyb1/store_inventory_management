@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 public class OutStock {
 private int id;
-private Timestamp createTime;
 private Timestamp completeTime;
 private int approver;
 public int getId() {
@@ -14,14 +13,6 @@ public void setId(int id) {
 	this.id = id;
 }
 
-
-
-public Timestamp getCreateTime() {
-	return createTime;
-}
-public void setCreateTime(Timestamp createTime) {
-	this.createTime = createTime;
-}
 public Timestamp getCompleteTime() {
 	return completeTime;
 }
