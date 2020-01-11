@@ -12,9 +12,25 @@ import com.opensymphony.xwork2.ActionContext;
 public class UserAction {
 	private String message; 
 	private User user = null; //用于装配用户HTTP请求参数
+	private User changeUser;
 	private ArrayList<User> users;
 	private String condition = "";
+	int id;
 	UserServiceImpl userServiceImpl = new UserServiceImpl();
+	
+	
+	public User getChangeUser() {
+		return changeUser;
+	}
+	public void setChangeUser(User changeUser) {
+		this.changeUser = changeUser;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getMessage() {
 		return message;
 	}
@@ -41,8 +57,6 @@ public class UserAction {
 	public User getUser() {
 		return this.user;
 	}
-
-
 	//用户登录
 	public String login() {
 		ActionContext context = ActionContext.getContext();
@@ -50,9 +64,14 @@ public class UserAction {
 		if ((User)session.get("user") == null) {
 			User user1 = userServiceImpl.login(user.getAccount(), user.getPassword());
 			if (user1 != null) {
+				if(user1.getState() == 0){
+					message = "账号被禁用，请联系管理员";
+					return "error";
+				}
 				session.put("user", user1);
 				return "success";
 			} else {
+				message = "账号或密码不正确";
 				return "error";
 			}
 		} else {
@@ -67,24 +86,28 @@ public class UserAction {
 		return "input";
 	}
 	
-	public String add() {
-		if (true) {
+	public String addUser() {
+		if (userServiceImpl.addUser(user)) {
+			message = "添加成功";
+			System.out.println(message);
 			return "success";
 		} else {
-			message = "添加用户失败！";
+			message = "添加用户失败！(该账号或已注册）";
+			System.out.println(message);
 			return "error";
 		}
 	}
 	
-	public String checkAll() {
+	public String checkAllUser() {
 		users = (ArrayList<User>) userServiceImpl.selectAllUser();
 		ActionContext.getContext().put("users", users);
 		System.out.println(users.size());
 		return "success";
 	}
 	
-	public String delete(int id) {
+	public String deleteUser() {
 		if (userServiceImpl.deleteUser(id)) {
+			message = "删除成功";
 			return "success";
 		} else {
 			return "error";
@@ -92,11 +115,13 @@ public class UserAction {
 	}
 	
 	public String updateForm() {
+		changeUser = userServiceImpl.selectUserById(id);
+		//ActionContext.getContext().put("changeUser", changeUser);
 		return "success";
 	}
 	
-	public String update() {
-		if (userServiceImpl.updateUser(user)) {
+	public String updateUser() {
+		if (userServiceImpl.updateUser(changeUser)) {
 			message = "更新用户成功！";
 		} else {
 			message = "更新用户失败！";

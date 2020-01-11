@@ -1,7 +1,14 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html lang="en">
-
+<script type="text/javascript">
+ //错误提示信息
+ var msg=""+'${message}'; 
+ if(msg!=""){ 
+    alert(msg); 
+ } 
+    //-->
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +16,6 @@
     <title>登录</title>
     <link rel="stylesheet" href="./css/login.css">
 </head>
-
 <body>
     <div class="login">
         <div class="center">

@@ -2,7 +2,15 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>  
 
 <html>
-
+<script type="text/javascript">
+ //错误提示信息
+ var msg=""+'${message}'; 
+ if(msg!=""){ 
+    alert(msg); 
+    window.location.href='checkAllUser.action';
+ } 
+    //-->
+</script>
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -15,7 +23,6 @@
 	</head>
 	<body>
 		<div class="dvcontent">
-
 			<div>
 				<!--tab start-->
 				<div class="tabs">
@@ -59,8 +66,8 @@
         										<s:elseif test='#user.state==1'>
         											<td>正常</td>
         										</s:elseif>
-												<td class="edit"><button onclick="btn_edit(1)"><i class="icon-edit bigger-120"></i>编辑</button></td>
-												<td class="delete"><button onclick="btn_delete(1)"><i class="icon-trash bigger-120"></i>删除</button></td>
+												<td class="edit"><button onclick="btn_edit(${user.id})"><i class="icon-edit bigger-120"></i>编辑</button></td>
+												<td class="delete"><button onclick="btn_delete(${user.id})"><i class="icon-trash bigger-120"></i>删除</button></td>
 											</tr>
 											</s:iterator> 
 										</tbody>
@@ -83,58 +90,47 @@
 					</div>
 					<div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
 						style="padding-top: 30px;">
-						<form class="am-form am-form-horizontal"
-							action="user/addUser1Submit.action" method="post">
+						<s:form class="am-form am-form-horizontal"
+							action="addUser" method="post" theme="simple">
 						
 							<div class="am-form-group">
 								<label for="user-name" class="am-u-sm-3 am-form-label">
 									姓名 / Name </label>
 								<div class="am-u-sm-9">
-									<input type="text" id="user-name" required
-										placeholder="姓名 / Name" name="name">
+									<s:textfield  id="user-name" required="required"
+										placeholder="姓名 / Name" name="user.name"/>
 								</div>
 							</div>
 							<div class="am-form-group">
 								<label for="user-name" class="am-u-sm-3 am-form-label">
-									用户名 / username </label>
-								<div class="am-u-sm-9">
-									<input type="text" id="user-name" required
-										placeholder="用户名 / username" name="username">
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									 sex </label>
+									性别 / sex </label>
 								<div class="am-u-sm-9" style="line-height: 30px;">
-									<input type="radio" id="man" name="sex" value="1"
-										${user.sex==1? "checked=checked ":""}/> <label for="man">
-										男 </label> &nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="woman"
-										name="sex" value="0" ${user.sex==0? "checked=checked ":""} />
-									<label for="woman"> 女 </label> <br /> <small>性别...</small>
+									<s:radio name="user.sex" list="#{'男':'男','女':'女'}"/>
+									 <br /> <small>性别...</small>
 								</div>
 							</div>
 							<div class="am-form-group">
 								<label for="user-email" class="am-u-sm-3 am-form-label">
 									联系电话 / phone </label>
 								<div class="am-u-sm-9">
-									<input type="tel" id="user-phone" required
-										placeholder="请输入联系电话" name="phone" /> <small>联系电话...</small>
+									<s:textfield name="user.phone" id="user-phone" required="required"
+										placeholder="请输入联系电话" /> <small>联系电话...</small>
 								</div>
 							</div>
 							<div class="am-form-group">
 								<label for="user-email" class="am-u-sm-3 am-form-label">
 									籍贯 / place </label>
 								<div class="am-u-sm-9">
-									<input type="text" id="user-email" required placeholder="请输入籍贯"
-										name="place" /> <small>籍贯...</small>
+									<s:textfield name="user.place" id="user-email" required="required" placeholder="请输入籍贯"
+										 /> <small>籍贯...</small>
 								</div>
 							</div>
 							<div class="am-form-group">
 								<label for="user-email" class="am-u-sm-3 am-form-label">
-									电子邮件 / Email </label>
+									账号 / Account </label>
 								<div class="am-u-sm-9">
-									<input type="email" id="user-email" required
-										placeholder="输入你的电子邮件 / Email" name="email" /> <small>邮箱你懂得...</small>
+									<s:textfield name="user.account" id="user-email" required="required"
+										placeholder="输入账号"  /> <small>登陆账号...</small>
 								</div>
 							</div>
 							
@@ -142,11 +138,11 @@
 						
 							<div class="am-form-group">
 								<label for="user-intro" class="am-u-sm-3 am-form-label">
-									备注/ Introg </label>
+									密码/ Password </label>
 								<div class="am-u-sm-9">
-									<textarea class="" rows="5" id="user-intro" name="remark"
-										placeholder="输入备注"></textarea>
-									<small>250字以内...</small>
+									<s:textfield id="user-intro" name="user.password" required="required"
+										placeholder="输入密码"/>
+									<small>15字以内...</small>
 								</div>
 							</div>
 							<div class="am-form-group">
@@ -154,17 +150,14 @@
 									<input type="submit" class="am-btn am-btn-success" value="添加用户" />
 								</div>
 							</div>
-						</form>
+						</s:form>
 					</div>
 				</div>
 			</div>
-			
-		</div>
-							<!--添加角色 end--
-						</ul>
-					</div>
-				</div>
-				<!--tab end-->
+			</div>
+			</div>
+			</div>
+			</ul>
 
 			</div>
 
@@ -180,69 +173,19 @@
 				 $(".tabs").slide({ trigger: "click" });
 
 				});
-
-	
-				var btn_save = function() {
-					var pid = $("#RawMaterialsTypePageId  option:selected").val();
-					var name = $("#RawMaterialsTypeName").val();
-					var desc = $("#RawMaterialsTypeDescription").val();
-					var ramark = $("#Ramark").val();
-					$.ajax({
-						type: "post",
-						url: "/RawMaterialsType/AddRawMaterialsType",
-						data: { name: name, pid: pid, desc: desc, ramark: ramark },
-						success: function(data) {
-							if(data > 0) {
-								$.jq_Alert({
-									message: "添加成功",
-									btnOktext: "确认",
-									dialogModal: true,
-									btnOkClick: function() {
-										//$("#RawMaterialsTypeName").val("");
-										//$("#RawMaterialsTypeDescription").val("");
-										//$("#Ramark").val("");                           
-										//page1();
-										location.reload();
-
-									}
-								});
-							}
-						}
-					});
-					alert(t);
-				}
-
 				var btn_edit = function(id) {
-					$.jq_Panel({
-						url: "/RawMaterialsType/EditRawMaterialsType?id=" + id,
-						title: "编辑分类",
-						dialogModal: true,
-						iframeWidth: 500,
-						iframeHeight: 400
-					});
+					window.location.href='updateUserForm.action?id='+id;
 				}
 				var btn_delete = function(id) {
-					$.jq_Confirm({
+				$.jq_Confirm({
 						message: "您确定要删除吗?",
 						btnOkClick: function() {
-							$.ajax({
-								type: "post",
-								url: "/RawMaterialsType/DeleteRawMaterialsType",
-								data: { id: id },
-								success: function(data) {
-									if(data > 0) {
-										$.jq_Alert({
-											message: "删除成功",
-											btnOkClick: function() {
-												page1();
-											}
-										});
-									}
-								}
-							});
+							window.location.href='deleteUser.action?id='+id;
+							
 						}
 					});
 				}
+					
 			</script>
 
 		</div>

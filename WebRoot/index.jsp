@@ -241,23 +241,23 @@
 					<i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
 					<ul class="ulleftsubitems">
 						<a href="type.html" target="right">
-							<li>分类管理</li>
+							<li>商品管理</li>
 						</a>
-						<a href="inventory.html" target="right">
+						<a href="inventory.jsp" target="right">
 							<li>库存管理</li>
 						</a>
-						<a href="inbound.html" target="right">
-							<li>入库管理</li>
-						</a>
 						<a href="warning.html" target="right">
-							<li>预警信息设置</li>
+							<li>供应商管理</li>
 						</a>
-						<a href="outBoud.html" target="right">
-							<li>出库管理</li>
-						</a>
-						<a href="checkAll" target="right">
-							<li>用户管理</li>
-						</a>
+						<s:if test='#user.type==0'>
+							    <a href="checkAllUser" target="right">
+									<li>用户管理</li>
+								</a>
+        				</s:if>
+        				<s:else>
+        						<li>用户管理</li>
+        				</s:else>
+						
 						<a href="updatePwd.html" target="right"><li >修改密码</li></a>
 					</ul>
 				</li>
