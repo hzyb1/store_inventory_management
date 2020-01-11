@@ -8,14 +8,12 @@
 select * from product where id=#{id}
 
 </select>
-<select id="selectAll" resultType="model.Product">
-     select name,price,barcode,sum(amount) 
-    from product,stock 
-     where product.id=stock.productId
+<select id="selectAll" resultType="po.ProductVo">
+     select product.id,name,price,barcode,sum(amount) amount
+     from stock right join product on (product.id=stock.productId)
      group by product.id;
- 
 </select>
-<update id="updatePreoduct" parameterType="model.Product">
+<update id="updateProduct" parameterType="model.Product">
      update product set name=#{name},price=#{price},barcode=#{barcode}
      where id=#{id}
 

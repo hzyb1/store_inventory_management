@@ -1,9 +1,10 @@
 package serviceImpl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import mapper.SupplierMapper;
-
 import model.Supplier;
 import service.SupplierService;
 import tools.DBTools;
@@ -48,7 +49,7 @@ public Supplier selectSupplierById(int id) {
 	}
 }
 
-public Boolean insertSupplier(Supplier supplier) {
+public Boolean addSupplier(Supplier supplier) {
 	try{
 		sqlSession=DBTools.getSession(); 
 		SupplierMapper supplierMapper = sqlSession.getMapper(SupplierMapper.class);
@@ -77,6 +78,24 @@ public boolean deleteSupplier(int id) {
 		sqlSession.close();
 	}
 	return false;
+}
+
+
+@Override
+public List<Supplier> selectAllSupplier() {
+	List<Supplier> suppliers = null;
+	try{
+		sqlSession=DBTools.getSession(); 
+		SupplierMapper supplierMapper = sqlSession.getMapper(SupplierMapper.class);
+		suppliers = supplierMapper.selectAll();
+		sqlSession.commit();
+	}catch(Exception e){
+		e.printStackTrace();
+		sqlSession.rollback();
+	}finally{
+		sqlSession.close();
+	}
+	return suppliers;
 }
 
 }

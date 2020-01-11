@@ -1,9 +1,6 @@
 <%@page import="model.User"%>
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%! User changeUser;%>
-<%changeUser = (User)session.getAttribute("changeUser");%>
-<s:set name="changeUser" value="#session['changeUser']"/>
 
 <html>
 <script type="text/javascript">

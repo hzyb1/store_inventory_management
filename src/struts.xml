@@ -24,16 +24,61 @@
 		<action name="deleteUser" class="action.UserAction" method="deleteUser">
 			<result name="success">/user.jsp</result>
 		</action>
-		<action name="updateUserForm" class="action.UserAction" method="updateForm">
+		<action name="updateUserForm" class="action.UserAction" method="updateUserForm">
 			<result name="error" type="dispatcher">
 				<param name="location">/updateUser.jsp</param>
 			</result>
-		
 			<result name="success">/updateUser.jsp</result>
 		</action>
 		<action name="updateUser" class="action.UserAction" method="updateUser">
 			<result name="success">/user.jsp</result>
 			<result name="input">/user.jsp</result>
 		</action>
+		
+		<action name="checkAllProduct" class="action.ProductAction" method="checkAllProduct">
+			<result name="success">/product.jsp</result>
+		</action>
+		<action name="addProduct" class="action.ProductAction" method="addProduct">
+			<result name="success">/product.jsp</result>
+			<result name="error">/product.jsp</result>
+			<result name="input">/product.jsp</result>
+		</action>
+		<action name="deleteProduct" class="action.ProductAction" method="deleteProduct">
+			<result name="success">/product.jsp</result>
+		</action>
+		<action name="updateProductForm" class="action.ProductAction" method="updateProductForm">
+			<result name="error" type="dispatcher">
+				<param name="location">/updateProduct.jsp</param>
+			</result>
+			<result name="success">/updateProduct.jsp</result>
+		</action>
+		<action name="updateProduct" class="action.ProductAction" method="updateProduct">
+			<result name="success">/product.jsp</result>
+			<result name="input">/product.jsp</result>
+		</action>
+		
+		
+		<action name="checkAllSupplier" class="action.SupplierAction" method="checkAllSupplier">
+			<result name="success">/supplier.jsp</result>
+		</action>
+		<action name="addSupplier" class="action.SupplierAction" method="addSupplier">
+			<result name="success">/supplier.jsp</result>
+			<result name="error">/supplier.jsp</result>
+			<result name="input">/supplier.jsp</result>
+		</action>
+		<action name="deleteSupplier" class="action.SupplierAction" method="deleteSupplier">
+			<result name="success">/supplier.jsp</result>
+		</action>
+		<action name="updateSupplierForm" class="action.SupplierAction" method="updateSupplierForm">
+			<result name="error" type="dispatcher">
+				<param name="location">/updateSupplier.jsp</param>
+			</result>
+			<result name="success">/updateSupplier.jsp</result>
+		</action>
+		<action name="updateSupplier" class="action.SupplierAction" method="updateSupplier">
+			<result name="success">/supplier.jsp</result>
+			<result name="input">/supplier.jsp</result>
+		</action>
+		
 	</package>
 </struts>

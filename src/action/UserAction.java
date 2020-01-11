@@ -82,7 +82,7 @@ public class UserAction {
 	public String logout() {
 		ActionContext context = ActionContext.getContext();
 		Map<String, Object> session = context.getSession();
-		session.remove("usr");
+		session.remove("user");
 		return "input";
 	}
 	
@@ -114,7 +114,7 @@ public class UserAction {
 		}
 	}
 	
-	public String updateForm() {
+	public String updateUserForm() {
 		changeUser = userServiceImpl.selectUserById(id);
 		//ActionContext.getContext().put("changeUser", changeUser);
 		return "success";

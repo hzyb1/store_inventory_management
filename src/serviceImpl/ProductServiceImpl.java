@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import po.ProductVo;
 import mapper.ProductMapper;
 
 
@@ -20,7 +21,7 @@ public class ProductServiceImpl implements ProductService{
 	
 
 	@Override
-	public Boolean insertProduct(Product product) {
+	public Boolean addProduct(Product product) {
 		try{
 			sqlSession=DBTools.getSession(); 
 			ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
@@ -93,12 +94,12 @@ public class ProductServiceImpl implements ProductService{
 
 
 	@Override
-	public List<Product> selectAllProduct() {
-		List<Product> product;
+	public List<ProductVo> selectAllProduct() {
+		List<ProductVo> productVos;
       try {
 		sqlSession=DBTools.getSession();
 		ProductMapper productMapper =sqlSession.getMapper(ProductMapper.class);
-		product=productMapper.selectAll();
+		productVos = productMapper.selectAll();
 		
 	  } catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -108,7 +109,7 @@ public class ProductServiceImpl implements ProductService{
 	}finally{
 		sqlSession.close();
 	}
-  	return product;
+  	return productVos;
 	}
 
 }

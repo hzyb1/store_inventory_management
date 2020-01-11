@@ -222,13 +222,7 @@
 					<li class="headerlitools_info headerlitools" style="background-color: #075597">
 						<div class="headeruserface" style="text-align: center;"><i class="icon-user" style="color: black;font-size: 19px;"></i></div>
 						<%=user.getName() %><i style="margin-left: 8px;" class="icon-caret-down"></i>
-						<ul class="headerlitools_ulinfo">
-
-							<li style="border-top: 1px solid #E4ECF3;">
-								<i class="icon-off" style="margin-right: 10px;"></i>
-								<a style="color: black; text-decoration: none;">退出</a>
-							</li>
-						</ul>
+						<i><a href="logout" target="parent"style="color: black; text-decoration: none;">退出1</a></i>
 					</li>
 				</ul>
 			</div>
@@ -240,13 +234,13 @@
 				<li class="limenuitem">
 					<i class="icon-cog menuicon"></i>系统菜单<b class="arrow icon-angle-down arrow-down"></b>
 					<ul class="ulleftsubitems">
-						<a href="type.html" target="right">
+						<a href="checkAllProduct" target="right">
 							<li>商品管理</li>
 						</a>
 						<a href="inventory.jsp" target="right">
 							<li>库存管理</li>
 						</a>
-						<a href="warning.html" target="right">
+						<a href="checkAllSupplier" target="right">
 							<li>供应商管理</li>
 						</a>
 						<s:if test='#user.type==0'>
@@ -263,7 +257,7 @@
 				</li>
 			</ul>
 			<div style="position: absolute; left: 191px; right: 20px; ">
-				<iframe src="type.html" scrolling="no"  width="100%" height="1200" name="right" border="none"></iframe>
+				<iframe src="checkAllProduct" scrolling="no"  width="100%" height="1200" name="right" border="none"></iframe>
 			</div>
 		</div>
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>

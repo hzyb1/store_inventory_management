@@ -9,7 +9,7 @@ select * from supplier where id=#{id}
 
 </select>
 <select id="selectAll" resultType="model.Supplier">
-     select * from supplier where type=1
+     select * from supplier 
 
 </select>
 <update id="updateSupplier" parameterType="model.Supplier">
