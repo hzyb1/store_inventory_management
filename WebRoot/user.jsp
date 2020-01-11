@@ -72,7 +72,94 @@
 						<ul class="theme-popbod dform" style="display: none;">
 							<div class="am-cf admin-main" style="padding-top: 0px;">
 			<!-- content start -->
-		
+						<div class="am-cf admin-main" style="padding-top: 0px;">
+		<!-- content start -->
+		<div class="admin-content">
+			<div class="admin-content-body">
+				
+				<div class="am-g">
+					<div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+						
+					</div>
+					<div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"
+						style="padding-top: 30px;">
+						<form class="am-form am-form-horizontal"
+							action="user/addUser1Submit.action" method="post">
+						
+							<div class="am-form-group">
+								<label for="user-name" class="am-u-sm-3 am-form-label">
+									姓名 / Name </label>
+								<div class="am-u-sm-9">
+									<input type="text" id="user-name" required
+										placeholder="姓名 / Name" name="name">
+								</div>
+							</div>
+							<div class="am-form-group">
+								<label for="user-name" class="am-u-sm-3 am-form-label">
+									用户名 / username </label>
+								<div class="am-u-sm-9">
+									<input type="text" id="user-name" required
+										placeholder="用户名 / username" name="username">
+								</div>
+							</div>
+							<div class="am-form-group">
+								<label for="user-name" class="am-u-sm-3 am-form-label">
+									 sex </label>
+								<div class="am-u-sm-9" style="line-height: 30px;">
+									<input type="radio" id="man" name="sex" value="1"
+										${user.sex==1? "checked=checked ":""}/> <label for="man">
+										男 </label> &nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="woman"
+										name="sex" value="0" ${user.sex==0? "checked=checked ":""} />
+									<label for="woman"> 女 </label> <br /> <small>性别...</small>
+								</div>
+							</div>
+							<div class="am-form-group">
+								<label for="user-email" class="am-u-sm-3 am-form-label">
+									联系电话 / phone </label>
+								<div class="am-u-sm-9">
+									<input type="tel" id="user-phone" required
+										placeholder="请输入联系电话" name="phone" /> <small>联系电话...</small>
+								</div>
+							</div>
+							<div class="am-form-group">
+								<label for="user-email" class="am-u-sm-3 am-form-label">
+									籍贯 / place </label>
+								<div class="am-u-sm-9">
+									<input type="text" id="user-email" required placeholder="请输入籍贯"
+										name="place" /> <small>籍贯...</small>
+								</div>
+							</div>
+							<div class="am-form-group">
+								<label for="user-email" class="am-u-sm-3 am-form-label">
+									电子邮件 / Email </label>
+								<div class="am-u-sm-9">
+									<input type="email" id="user-email" required
+										placeholder="输入你的电子邮件 / Email" name="email" /> <small>邮箱你懂得...</small>
+								</div>
+							</div>
+							
+				
+						
+							<div class="am-form-group">
+								<label for="user-intro" class="am-u-sm-3 am-form-label">
+									备注/ Introg </label>
+								<div class="am-u-sm-9">
+									<textarea class="" rows="5" id="user-intro" name="remark"
+										placeholder="输入备注"></textarea>
+									<small>250字以内...</small>
+								</div>
+							</div>
+							<div class="am-form-group">
+								<div class="am-u-sm-9 am-u-sm-push-3">
+									<input type="submit" class="am-btn am-btn-success" value="添加用户" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
 							<!--添加角色 end--
 						</ul>
 					</div>

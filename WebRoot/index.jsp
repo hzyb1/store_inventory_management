@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+<%@page import="model.User"%>
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%! User user;%>
+<%user = (User)session.getAttribute("user");%>
+<s:set name="user" value="#session['user']"/>
 <html>
 
 	<head>
 		<meta charset="utf-8" />
-		<title>@ViewBag.Title</title>
+		<title>便利店库存管理系统</title>
 		<link href="css/Site.css" rel="stylesheet" type="text/css" />
 		<link href="css/zy.layout.css" rel="stylesheet" />
 		<link href="css/zy.form.css" rel="stylesheet" />
@@ -216,7 +221,7 @@
 
 					<li class="headerlitools_info headerlitools" style="background-color: #075597">
 						<div class="headeruserface" style="text-align: center;"><i class="icon-user" style="color: black;font-size: 19px;"></i></div>
-						管理员<i style="margin-left: 8px;" class="icon-caret-down"></i>
+						<%=user.getName() %><i style="margin-left: 8px;" class="icon-caret-down"></i>
 						<ul class="headerlitools_ulinfo">
 
 							<li style="border-top: 1px solid #E4ECF3;">
@@ -264,9 +269,6 @@
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
 		<script src="js/plugs/Jqueryplugs.js" type="text/javascript"></script>
 		<script src="js/_layout.js"></script>
-
-		
-
 	</body>
 
 </html>
