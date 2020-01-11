@@ -2,12 +2,13 @@ package mapper;
 
 import java.util.List;
 
+import model.Product;
 import model.Stock;
 
 public interface ProductMapper {
-	public Stock selectById(int id);
-	public List<Stock> selectAll();
-	public boolean updateStock(Stock stock);
-	public boolean insertStock(Stock stock);
+	public Product selectById(int id);
+	public List<Product> selectAll();
+	public boolean updateProduct(Product product);
+	public boolean insertProduct(Product product);
 	public boolean deleteById(int id);
 }
