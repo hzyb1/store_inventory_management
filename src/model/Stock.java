@@ -8,6 +8,13 @@ private int productId;
 private int amount;
 private int areaNumber;
 private int shelfNumber;
+private int placeNumber;
+public int getPlaceNumber() {
+	return placeNumber;
+}
+public void setPlaceNumber(int placeNumber) {
+	this.placeNumber = placeNumber;
+}
 private Timestamp instockTime;
 public int getId() {
 	return id;
