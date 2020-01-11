@@ -2,6 +2,7 @@ package serviceImpl;
 
 import java.util.List;
 
+import model.Product;
 import model.Supplier;
 import model.User;
 
@@ -17,14 +18,10 @@ public class Test{
 	
 	public static void main(String[] args)
 	{
-		SupplierServiceImpl supplierServiceImpl =new SupplierServiceImpl();
-		Supplier supplier=supplierServiceImpl.selectSupplierById(1);
-		
-		supplier.setName("¶ùÁù");
-		supplier.setAddress("ÉÏº£");
-//		supplier.setId(2);
-		supplier.setPhone("123456");
-		supplierServiceImpl.insertSupplier(supplier);
-		System.out.println(supplier);
+		ProductServiceImpl productrServiceImpl =new ProductServiceImpl();
+		List<Product> product = productrServiceImpl.selectAllProduct();
+//         product.setName("leshi");	
+//	    productrServiceImpl.insertProduct(product);
+		System.out.println(product);
 }
 }

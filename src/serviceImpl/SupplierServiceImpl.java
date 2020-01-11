@@ -3,7 +3,7 @@ package serviceImpl;
 import org.apache.ibatis.session.SqlSession;
 
 import mapper.SupplierMapper;
-import mapper.UserMapper;
+
 import model.Supplier;
 import service.SupplierService;
 import tools.DBTools;
