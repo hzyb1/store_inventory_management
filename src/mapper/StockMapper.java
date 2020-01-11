@@ -3,7 +3,6 @@ package mapper;
 import java.util.List;
 
 import model.Stock;
-import model.Supplier;
 
 public interface StockMapper {
 	public Stock selectById(int id);
