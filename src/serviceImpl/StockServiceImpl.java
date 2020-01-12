@@ -8,16 +8,21 @@ import org.apache.ibatis.session.SqlSession;
 
 
 
+
+
+
+
+import mapper.InStockMapper;
 import mapper.StockMapper;
-
+import model.InStock;
 import model.Stock;
-
 import service.StockService;
 import tools.DBTools;
 
 public class StockServiceImpl implements StockService{
   SqlSession sqlSession;
   StockMapper stockMapper;
+  InStockMapper instockMaper;
 	@Override
 	public List<Stock> selectAllStock() {
 		List<Stock> stock;
@@ -105,6 +110,96 @@ public class StockServiceImpl implements StockService{
 			sqlSession.close();
 	}
 
+	}
+
+	@Override
+	public InStock selectInStocktById(int id) {
+		try{
+			sqlSession=DBTools.getSession(); 
+			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
+			InStock instock = instockMapper.selectById(id);
+			return instock;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+	}
+		}
+	@Override
+	public List<InStock> selectAllInStock() {
+		List<InStock> instock;
+	      try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
+			instock=instockMapper.selectAll();
+			
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+		   return null;
+		}finally{
+			sqlSession.close();
+		}
+	  	return instock;
+		}
+	@Override
+	public Boolean updateInStock(InStock instock) {
+	    try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
+       Boolean state=instockMapper.updateInStock(instock);
+         sqlSession.commit();
+         return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	@Override
+	public Boolean insertInStock(InStock instock) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
+			boolean state=instockMapper.insertInStock(instock);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+
+	}
+
+	@Override
+	public boolean deleteInStock(int id) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
+			boolean state=instockMapper.deleteById(id);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+
+
+		}finally{
+			sqlSession.close();
+		}
+
+return false;	
 	}
 	}
 
