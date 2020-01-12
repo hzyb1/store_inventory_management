@@ -3,6 +3,7 @@ package serviceImpl;
 import java.util.List;
 
 import po.ProductVo;
+import model.InStockDetail;
 import model.Product;
 import model.Stock;
 import model.Supplier;
@@ -21,10 +22,6 @@ public class Test{
 	
 	public static void main(String[] args)
 	{
-       StockServiceImpl instockServiceImpl =new StockServiceImpl();
-      List<InStock>   instock=   instockServiceImpl.selectAllInStock();
-//         instock.setSupplierId(5);
-//         instockServiceImpl.insertInStock(instock);
-        System.out.println("instock");
+
 	}
 }

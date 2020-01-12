@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import model.InStockDetail;
 import model.Product;
 import model.Stock;
 import model.InStock;
@@ -17,5 +18,13 @@ public interface StockService {
 	public Boolean updateInStock(InStock instock);
 	public Boolean insertInStock(InStock instock);
 	public boolean deleteInStock(int id);
+	
+	public InStockDetail selectInStocktDetailById(int id);
+	public List<InStockDetail> selectAllInStockDetail();
+	public Boolean updateInStockDetail(InStockDetail instockdetail);
+	public Boolean insertInStockDetail(InStockDetail instockdetail);
+	public boolean deleteInStockDetail(int id);
+	
+	
 	
 }
