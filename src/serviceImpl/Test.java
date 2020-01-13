@@ -3,10 +3,12 @@ package serviceImpl;
 import java.util.List;
 
 import po.ProductVo;
+import model.InStockDetail;
 import model.Product;
 import model.Stock;
 import model.Supplier;
 import model.User;
+import model.InStock;
 
 //public class Test {
 //	public static void main(String[] args) {

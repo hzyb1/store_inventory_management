@@ -86,6 +86,10 @@
 		<action name="addToInList" class="action.StockAction" method="addToInList">
 			<result name="success">/inventory.jsp</result>
 		</action>
+		<action name="inStockOption" class="action.StockAction" method="inStockOption">
+			<result name="success">/inventory.jsp</result>
+			<result name="error">/inventory.jsp</result>
+		</action>
 		
 		
 	</package>

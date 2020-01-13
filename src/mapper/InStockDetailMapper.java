@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.List;
 
+import model.InStock;
 import model.InStockDetail;
 import model.Stock;
 

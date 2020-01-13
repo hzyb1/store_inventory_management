@@ -408,7 +408,7 @@
 												<td><s:property value="areaNumber" /></td>
 												<td><s:property value="shelfNumber" /></td>
 												<td><s:property value="placeNumber" /></td>
-												<td><s:property value="supplierNumber" /></td>
+												<td><s:property value="supplierName" /></td>
 												<td class="delete"><button onclick="btn_delete5(${inStockPo.id})"><i class="icon-trash bigger-120"></i>删除</button></td>
 											</tr>
 											</s:iterator> 
@@ -416,7 +416,7 @@
 									</table>
 									<div class="am-form-group">
 								<div class="am-u-sm-9 am-u-sm-push-3">
-									<a href="checkAll" class="am-btn am-btn-success" target="right">入库</a>
+									<a href="inStockOption" class="am-btn am-btn-success" target="right">入库</a>
 								</div>
 							</div>
 								</div>

@@ -4,22 +4,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-
-
-
-
-
-
-
-
-
-
-
 import po.InStockPo;
 import po.InStockVo;
 import po.OutStockPo;
 import po.OutStockVo;
 import po.StockVo;
+import mapper.InStockDetailMapper;
 import mapper.InStockMapper;
 import mapper.StockMapper;
 import model.InStock;
@@ -27,12 +17,13 @@ import model.InStockDetail;
 import model.Stock;
 import service.StockService;
 import tools.DBTools;
-
 public class StockServiceImpl implements StockService{
   SqlSession sqlSession;
   StockMapper stockMapper;
   InStockMapper inStockMapper;
-	@Override
+  InStockDetailMapper inStockDetailMapper;
+
+  @Override
 	public List<StockVo> selectAllStock() {
 		List<StockVo> StockVos;
 	      try {
@@ -70,22 +61,6 @@ public class StockServiceImpl implements StockService{
 	
 	}
 
-	@Override
-	public Boolean insertStock(Stock stock) {
-		try{
-			sqlSession=DBTools.getSession(); 
-			StockMapper stockMapper = sqlSession.getMapper(StockMapper.class);
-			boolean state = stockMapper.insertStock(stock);
-			sqlSession.commit();
-			return state;
-		}catch(Exception e){
-			e.printStackTrace();
-			sqlSession.rollback();
-			return null;
-		}finally{
-			sqlSession.close();
-		}
-	}
 
 	@Override
 	public boolean deleteStock(int id) {
@@ -132,12 +107,15 @@ public class StockServiceImpl implements StockService{
 		try {
 			sqlSession=DBTools.getSession();
 			inStockMapper = sqlSession.getMapper(InStockMapper.class);
+			inStockDetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			stockMapper = sqlSession.getMapper(StockMapper.class);
 			inStockMapper.insertInStock(inStock);
 			for(int i = 0;i<inStockPos.size();i++){
 				InStockDetail inStockDetail = new InStockDetail();
-				inStockDetail.setInStorkId(inStock.getId());
+				inStockDetail.setInStockId(inStock.getId());
 				inStockDetail.setAmount(inStockPos.get(i).getAmount());
 				inStockDetail.setProductId(inStockPos.get(i).getProductId());
+				inStockDetailMapper.insertInStockDetail(inStockDetail);
 				
 				Stock stock = new Stock();
 				stock.setAmount(inStockPos.get(i).getAmount());
@@ -147,26 +125,42 @@ public class StockServiceImpl implements StockService{
 				stock.setProductId(inStockPos.get(i).getProductId());
 				stock.setShelfNumber(inStockPos.get(i).getShelfNumber());
 				stockMapper.insertStock(stock);
-				
-				
+				sqlSession.commit();
 			}
-			
-			
-		  } catch (Exception e) {
-			// TODO Auto-generated catch block
+		}catch(Exception e){
 			e.printStackTrace();
 			sqlSession.rollback();
 			return false;
 		}finally{
 			sqlSession.close();
+		}
+		return true;
+	}
+			
+
+	@Override
+	public List<InStock> selectAllInStock() {
+		List<InStock> inStocks = null;
+	      try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
+			inStocks=instockMapper.selectAll();
+			
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return inStocks;
+		}finally{
+			sqlSession.close();
 			
 		}
 		
-		return false;
+		return inStocks;
 	}
 
 	@Override
-	public boolean OuStockOption(List<OutStockPo> outStockPos) {
+	public boolean outStockOption(List<OutStockPo> outStockPos) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -178,9 +172,156 @@ public class StockServiceImpl implements StockService{
 	}
 
 	@Override
-	public List<InStockVo> selectAllInStock() {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean updateInStock(InStock instock) {
+	    try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
+       Boolean state=instockMapper.updateInStock(instock);
+         sqlSession.commit();
+         return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	@Override
+	public Boolean insertInStock(InStock instock) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
+			boolean state=instockMapper.insertInStock(instock);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+
+	}
+
+	@Override
+	public boolean deleteInStock(int id) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
+			boolean state=instockMapper.deleteById(id);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+
+
+		}finally{
+			sqlSession.close();
+		}
+
+return false;	
+	}
+
+	@Override
+	public InStockDetail selectInStocktDetailById(int id) {
+		try{
+			sqlSession=DBTools.getSession(); 
+			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			InStockDetail instockdetail = instockdetailMapper.selectById(id);
+			return instockdetail;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
 	}
 	}
 
+	@Override
+	public List<InStockDetail> selectAllInStockDetail() {
+		List<InStockDetail> instockdetail;
+	      try {
+			sqlSession=DBTools.getSession();
+			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			instockdetail=instockdetailMapper.selectAll();
+			
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+		   return null;
+		}finally{
+			sqlSession.close();
+		}
+	  	return instockdetail;
+	}
+
+	@Override
+	public Boolean updateInStockDetail(InStockDetail instockdetail) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+       Boolean state=instockdetailMapper.updateInStockDetail(instockdetail);
+         sqlSession.commit();
+         return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	@Override
+	public Boolean insertInStockDetail(InStockDetail instockdetail) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			boolean state=instockdetailMapper.insertInStockDetail(instockdetail);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	@Override
+	public boolean deleteInStockDetail(int id) {
+		try {
+			sqlSession=DBTools.getSession();
+			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			boolean state=instockdetailMapper.deleteById(id);
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+
+
+		}finally{
+			sqlSession.close();
+		}
+		return false;
+
+	}
+
+	@Override
+	public InStock selectInStocktById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
