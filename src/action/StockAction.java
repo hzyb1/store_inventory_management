@@ -211,9 +211,9 @@ public class StockAction {
 	public String outStockOption(){
 		ActionContext context = ActionContext.getContext();
 		Map<String, Object> session = context.getSession();
-		List<InStockPo> inStockList = (List<InStockPo>) session.get("inStockList");
-		boolean state = stockServiceImpl.inStockOption(inStockList);
-		inStockList.clear();
+		List<OutStockPo> outStockList = (List<OutStockPo>) session.get("outStockList");
+		boolean state = stockServiceImpl.outStockOption(outStockList);
+		outStockList.clear();
 		if(state){
 			message = "³ö¿â³É¹¦£¡";
 			System.out.println(message);
@@ -228,8 +228,7 @@ public class StockAction {
 	
 	public String checkAllOutStock() {
 		List<OutStockVo> outStockVos =  stockServiceImpl.selectAllOutStock();
-		System.out.println(outStockVos.size()+"aaa");
-		if(outStockVos != null)
+		if(outStockVos == null) outStockVos = new ArrayList<>();
 		ActionContext.getContext().put("inStockVos", outStockVos);
 		return "success";
 	}

@@ -8,17 +8,15 @@
         select * from instock where id=#{id}
 
 </select>
-<<<<<<< HEAD
 <select id="selectAll" resultType="po.InStockVo">
    select  instockdetail.id id,product.name productName, supplier.name supplierName,user.name approverName, instockdetail.amount ,completeTime  
   from  instock ,instockdetail ,product, supplier,user
    where instockdetail.inStockid=instock.id 
-=======
+   </select>
 <select id="selectAllInStock" resultType="po.InStockVo">
    select  product.name productName, supplier.name ,approver supplierName , instockdetail.amount ,completeTime  
   from  instock ,instockdetail ,product, supplier
    where instockdetail.id=instock.id 
->>>>>>> 358ed971ab5e9580c5e8e1736ae74414ec06c83a
       and instockdetail.productid=product.id
       and instock.approver=supplier.id
       and user.id = approver;

@@ -8,8 +8,8 @@
         select * from outstock where id=#{id}
 
 </select>
-<select id="selectAllOutStock" resultType="po.OutStockVo">
-  select  product.name productName,outstockdetail.amount,outstock.completetime,user.name approverName
+<select id="selectAll" resultType="po.OutStockVo">
+  select outstockdetail.id, product.name productName,outstockdetail.amount,outstock.completetime,user.name approverName
 from  outstockdetail,outstock,product,user
 where outstockdetail.id=outstock.id 
       and outstockdetail.productid=product.id

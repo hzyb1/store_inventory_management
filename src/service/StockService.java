@@ -30,17 +30,10 @@ public interface StockService {
 	
 	public boolean deleteInStockDetail(int id);
 	
-<<<<<<< HEAD
 	public OutStockPo addToOutList(int id);
-=======
-<<<<<<< HEAD
 	public OutStock selectOutStocktById(int id);
-	public List<OutStock> selectAllOutStock();
 	public Boolean updateOutStock(OutStock outStock);
 	public Boolean insertOutStock(OutStock outStock);
 	public boolean deleteOutStock(int id);
 	
-=======
->>>>>>> 2282696dd313eb7d09f5f6a287999080fd25ffe2
->>>>>>> 358ed971ab5e9580c5e8e1736ae74414ec06c83a
 }
