@@ -16,18 +16,18 @@ public interface StockService {
 	public List<StockVo> selectAllStock();
 	public Boolean addStock(Stock stock);
 	public boolean deleteStock(int id);
+	
 	public boolean inStockOption(List<InStockPo> inStockPos);
 	public boolean outStockOption(List<OutStockPo> outStockPos);
+	
 	public List<OutStockVo> selectAllOutStock();
-	public InStock selectInStocktById(int id);
-	public List<InStock> selectAllInStock();
+	
+	public List<InStockVo> selectAllInStock();
 	public Boolean updateInStock(InStock instock);
 	public Boolean insertInStock(InStock instock);
 	public boolean deleteInStock(int id);
-	public InStockDetail selectInStocktDetailById(int id);
-	public List<InStockDetail> selectAllInStockDetail();
-	public Boolean updateInStockDetail(InStockDetail inStockDetail);
-	public Boolean insertInStockDetail(InStockDetail inStockDetail);
+	
 	public boolean deleteInStockDetail(int id);
 	
+	public OutStockPo addToOutList(int id);
 }

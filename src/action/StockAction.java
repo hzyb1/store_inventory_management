@@ -14,6 +14,9 @@ import model.Stock;
 import model.Supplier;
 import model.User;
 import po.InStockPo;
+import po.InStockVo;
+import po.OutStockPo;
+import po.OutStockVo;
 import po.StockVo;
 import serviceImpl.ProductServiceImpl;
 import serviceImpl.StockServiceImpl;
@@ -145,6 +148,7 @@ public class StockAction {
 		Timestamp submitTime = new Timestamp(System.currentTimeMillis());
 		inStockPo.setInStockTime(submitTime);
 		inStockList.add(inStockPo);
+		message = "添加成功成功！";
 		return "success";
 	}
 	
@@ -153,16 +157,81 @@ public class StockAction {
 		Map<String, Object> session = context.getSession();
 		List<InStockPo> inStockList = (List<InStockPo>) session.get("inStockList");
 		ActionContext.getContext().put("inStockList", inStockList);
-		
 		return "success";
 	}
 	public String inStockOption(){
 		ActionContext context = ActionContext.getContext();
 		Map<String, Object> session = context.getSession();
 		List<InStockPo> inStockList = (List<InStockPo>) session.get("inStockList");
-		if(stockServiceImpl.inStockOption(inStockList))	return "success";
-		else return "error";
+		boolean state = stockServiceImpl.inStockOption(inStockList);
+		inStockList.clear();
+		if(state){
+			message = "入库成功！";
+			System.out.println(message);
+			return "success";
+		}
+		else{
+			message = "入库失败！";
+			System.out.println(message);
+			return "error";
+		}
 	}
 	
+	public String checkAllInStock() {
+		List<InStockVo> inStockVos =  stockServiceImpl.selectAllInStock();
+		System.out.println(inStockVos.size()+"aaa");
+		if(inStockVos != null)
+		ActionContext.getContext().put("inStockVos", inStockVos);
+		return "success";
+	}
+	
+	public String deleteInStockDetail() {
+		if (stockServiceImpl.deleteInStockDetail(id)) {
+			message = "删除成功";
+			return "success";
+		} else {
+			return "error";
+		}
+	}
+	
+	public String addToOutList(){
+		ActionContext context = ActionContext.getContext();
+		Map<String, Object> session = context.getSession();
+		List<OutStockPo> outStockList = (List<OutStockPo>) session.get("outStockList");
+		User user = (User) session.get("user");
+		System.out.println(id+"ccccc");
+		OutStockPo outStockPo = stockServiceImpl.addToOutList(id);
+		outStockPo.setApproverName(user.getName());
+		outStockPo.setId(outStockList.size()+1);
+		outStockList.add(outStockPo);
+		message = "已加入出库单！";
+		return "success";
+	}
+	
+	public String outStockOption(){
+		ActionContext context = ActionContext.getContext();
+		Map<String, Object> session = context.getSession();
+		List<InStockPo> inStockList = (List<InStockPo>) session.get("inStockList");
+		boolean state = stockServiceImpl.inStockOption(inStockList);
+		inStockList.clear();
+		if(state){
+			message = "出库成功！";
+			System.out.println(message);
+			return "success";
+		}
+		else{
+			message = "出库失败！";
+			System.out.println(message);
+			return "error";
+		}
+	}
+	
+	public String checkAllOutStock() {
+		List<OutStockVo> outStockVos =  stockServiceImpl.selectAllOutStock();
+		System.out.println(outStockVos.size()+"aaa");
+		if(outStockVos != null)
+		ActionContext.getContext().put("inStockVos", outStockVos);
+		return "success";
+	}
 	
 }

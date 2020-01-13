@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+
 import po.InStockPo;
 import po.InStockVo;
 import po.OutStockPo;
@@ -11,9 +12,13 @@ import po.OutStockVo;
 import po.StockVo;
 import mapper.InStockDetailMapper;
 import mapper.InStockMapper;
+import mapper.OutStockDetailMapper;
+import mapper.OutStockMapper;
 import mapper.StockMapper;
 import model.InStock;
 import model.InStockDetail;
+import model.OutStock;
+import model.OutStockDetail;
 import model.Stock;
 import service.StockService;
 import tools.DBTools;
@@ -22,6 +27,8 @@ public class StockServiceImpl implements StockService{
   StockMapper stockMapper;
   InStockMapper inStockMapper;
   InStockDetailMapper inStockDetailMapper;
+  OutStockMapper outStockMapper;
+  OutStockDetailMapper outStockDetailMapper;
 
   @Override
 	public List<StockVo> selectAllStock() {
@@ -139,30 +146,56 @@ public class StockServiceImpl implements StockService{
 			
 
 	@Override
-	public List<InStock> selectAllInStock() {
-		List<InStock> inStocks = null;
+	public List<InStockVo> selectAllInStock() {
+		List<InStockVo> inStockVos = null;
 	      try {
 			sqlSession=DBTools.getSession();
-			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
-			inStocks=instockMapper.selectAll();
+			inStockMapper = sqlSession.getMapper(InStockMapper.class);
+			inStockVos=inStockMapper.selectAll();
 			
 		  } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			sqlSession.rollback();
-			return inStocks;
+			return inStockVos;
 		}finally{
 			sqlSession.close();
 			
 		}
 		
-		return inStocks;
+		return inStockVos;
 	}
 
 	@Override
 	public boolean outStockOption(List<OutStockPo> outStockPos) {
-		// TODO Auto-generated method stub
-		return false;
+		if(outStockPos == null || outStockPos.size() == 0)	return false;
+		OutStock outStock = new OutStock();
+		outStock.setApprover(outStockPos.get(0).getApproverId());
+		Timestamp submitTime = new Timestamp(System.currentTimeMillis());
+		outStock.setCompleteTime(submitTime);
+		try {
+			sqlSession=DBTools.getSession();
+			outStockMapper = sqlSession.getMapper(OutStockMapper.class);
+			outStockDetailMapper = sqlSession.getMapper(OutStockDetailMapper.class);
+			stockMapper = sqlSession.getMapper(StockMapper.class);
+			outStockMapper.insertOutStock(outStock);
+			for(int i = 0;i<outStockPos.size();i++){
+				OutStockDetail outStockDetail = new OutStockDetail();
+				outStockDetail.setOutStockId(outStock.getId());
+				outStockDetail.setAmount(outStockPos.get(i).getAmount());
+				outStockDetail.setProductId(outStockPos.get(i).getProductId());
+				outStockDetailMapper.insertOutStockDetail(outStockDetail);
+				stockMapper.deleteById(outStockPos.get(0).getId());
+				sqlSession.commit();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return false;
+		}finally{
+			sqlSession.close();
+		}
+		return true;
 	}
 
 	@Override
@@ -229,99 +262,42 @@ return false;
 	}
 
 	@Override
-	public InStockDetail selectInStocktDetailById(int id) {
+	public boolean deleteInStockDetail(int id) {
 		try{
 			sqlSession=DBTools.getSession(); 
-			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
-			InStockDetail instockdetail = instockdetailMapper.selectById(id);
-			return instockdetail;
+			inStockDetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
+			boolean state = inStockDetailMapper.deleteById(id);
+			sqlSession.commit();
+			return state;
 		}catch(Exception e){
 			e.printStackTrace();
 			sqlSession.rollback();
-			return null;
-		}finally{
-			sqlSession.close();
-	}
-	}
-
-	@Override
-	public List<InStockDetail> selectAllInStockDetail() {
-		List<InStockDetail> instockdetail;
-	      try {
-			sqlSession=DBTools.getSession();
-			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
-			instockdetail=instockdetailMapper.selectAll();
-			
-		  } catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			sqlSession.rollback();
-		   return null;
-		}finally{
-			sqlSession.close();
-		}
-	  	return instockdetail;
-	}
-
-	@Override
-	public Boolean updateInStockDetail(InStockDetail instockdetail) {
-		try {
-			sqlSession=DBTools.getSession();
-			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
-       Boolean state=instockdetailMapper.updateInStockDetail(instockdetail);
-         sqlSession.commit();
-         return state;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			sqlSession.rollback();
-			return null;
-		}finally{
-			sqlSession.close();
-		}
-	}
-
-	@Override
-	public Boolean insertInStockDetail(InStockDetail instockdetail) {
-		try {
-			sqlSession=DBTools.getSession();
-			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
-			boolean state=instockdetailMapper.insertInStockDetail(instockdetail);
-			return state;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			sqlSession.rollback();
-			return null;
-		}finally{
-			sqlSession.close();
-		}
-	}
-
-	@Override
-	public boolean deleteInStockDetail(int id) {
-		try {
-			sqlSession=DBTools.getSession();
-			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
-			boolean state=instockdetailMapper.deleteById(id);
-			return state;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			sqlSession.rollback();
-
-
 		}finally{
 			sqlSession.close();
 		}
 		return false;
-
 	}
 
 	@Override
-	public InStock selectInStocktById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public OutStockPo addToOutList(int id) {
+		OutStockPo outStockPo;
+		try {
+			sqlSession=DBTools.getSession();
+			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
+			stockMapper = sqlSession.getMapper(StockMapper.class);
+			outStockPo = (OutStockPo) stockMapper.selectOutStockPo(id);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+		return outStockPo;
 	}
+
 
 }

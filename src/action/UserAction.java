@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import po.InStockPo;
+import po.OutStockPo;
 import serviceImpl.UserServiceImpl;
 import model.User;
 
@@ -20,7 +21,7 @@ public class UserAction {
 	int id;
 	UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private List<InStockPo> inStockList;
-	
+	private List<OutStockPo> outStockList;
 	public User getChangeUser() {
 		return changeUser;
 	}
@@ -72,6 +73,8 @@ public class UserAction {
 				}
 				inStockList = new ArrayList<InStockPo>();
 				session.put("inStockList", inStockList);
+				outStockList = new ArrayList<OutStockPo>();
+				session.put("outStockList", outStockList);
 				session.put("user", user1);
 				return "success";
 			} else {

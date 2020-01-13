@@ -5,6 +5,14 @@
  <select id="selectById" parameterType="int" resultType="model.Stock">
    select * from stock where id=#{id}
  </select>
+ 
+  <select id="selectOutStockPo" parameterType="int" resultType="po.OutStockPo">
+   select  stock.*,product.name productName
+  from   stock ,product
+   where stock.id=#{id}
+      and stock.productid=product.id
+ </select>
+ 
  <select id="selectAll" resultType="po.StockVo">
       select stock.id,amount,areaNumber,shelfNumber,placeNumber,inStocktime,name productName
       from product,stock 
