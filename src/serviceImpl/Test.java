@@ -4,6 +4,7 @@ import java.util.List;
 
 import po.ProductVo;
 import model.InStockDetail;
+import model.OutStock;
 import model.Product;
 import model.Stock;
 import model.Supplier;
@@ -22,6 +23,6 @@ public class Test{
 	
 	public static void main(String[] args)
 	{
+  
 
-	}
-}
+}}

@@ -6,8 +6,8 @@ import model.OutStock;
 
 public interface OutStockMapper {
 	public OutStock selectById(int id);
-	public List<OutStock> selectAll();
+	public List<OutStock> selectAllOutStock();
 	public boolean updateOutStock(OutStock outStock);
 	public boolean insertOutStock(OutStock outStock);
-	public boolean deleteById(int id);
+	public boolean deleteOutStock(int id);
 }
