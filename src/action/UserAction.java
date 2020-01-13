@@ -1,8 +1,10 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import po.InStockPo;
 import serviceImpl.UserServiceImpl;
 import model.User;
 
@@ -17,7 +19,7 @@ public class UserAction {
 	private String condition = "";
 	int id;
 	UserServiceImpl userServiceImpl = new UserServiceImpl();
-	
+	private List<InStockPo> inStockList;
 	
 	public User getChangeUser() {
 		return changeUser;
@@ -68,6 +70,8 @@ public class UserAction {
 					message = "账号被禁用，请联系管理员";
 					return "error";
 				}
+				inStockList = new ArrayList<InStockPo>();
+				session.put("inStockList", inStockList);
 				session.put("user", user1);
 				return "success";
 			} else {

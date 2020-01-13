@@ -2,7 +2,7 @@ package model;
 
 public class InStockDetail {
 private int id;
-private int instorkId;
+private int inStockId;
 private int productId;
 private int amount;
 public int getId() {
@@ -13,12 +13,11 @@ public void setId(int id) {
 }
 
 
-
-public int getInstorkId() {
-	return instorkId;
+public int getInStockId() {
+	return inStockId;
 }
-public void setInstorkId(int instorkId) {
-	this.instorkId = instorkId;
+public void setInStockId(int inStockId) {
+	this.inStockId = inStockId;
 }
 public int getProductId() {
 	return productId;

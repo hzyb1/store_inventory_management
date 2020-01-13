@@ -13,14 +13,14 @@
  
 </select>
 <update id="updateInStockDetail" parameterType="model.InStockDetail">
-     update instock set instorkId=#{instorkId},productId=#{productId},amount=#{amount}
+     update instock set inStockId=#{inStockId},productId=#{productId},amount=#{amount}
      where id=#{id}
 
 
 </update>
  <insert id="insertInStockDetail" useGeneratedKeys="true" keyProperty="id">
-      insert into  instockdetail (instorkId,productId,amount)
-      values (#{instorkId},#{productId},#{amount})
+      insert into  instockdetail (inStockId,productId,amount)
+      values (#{inStockId},#{productId},#{amount})
  </insert>
 <delete id="deleteById" parameterType="int">
     delete from instockdetail where id=#{id}

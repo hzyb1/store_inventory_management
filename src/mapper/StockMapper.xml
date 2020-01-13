@@ -5,19 +5,19 @@
  <select id="selectById" parameterType="int" resultType="model.Stock">
    select * from stock where id=#{id}
  </select>
- <select id="selectAll" resultType="model.Stock">
-      select productId,amount,areanumber,shelfnumber,placenumber,instocktime,name
+ <select id="selectAll" resultType="po.StockVo">
+      select stock.id,amount,areaNumber,shelfNumber,placeNumber,inStocktime,name productName
       from product,stock 
       where stock.productId=product.id
  </select>
  <update id="updateStock" parameterType="model.Stock">
      update stock set productId=#{productId},amount=#{amount},areaNumber=#{areaNumber},shelfNumber=#{shelfNumber},
-     placeNumber=#{placeNumber},instockTime=#{instockTime}
+     placeNumber=#{placeNumber},inStockTime=#{inStockTime}
      where id=#{id}
  </update>
  <insert id="insertStock" useGeneratedKeys="true" keyProperty="id">
-      insert into  stock (productId,amount,areaNumber,shelfNumber,placeNumber,instockTime)
-      values (#{productId},#{amount},#{areaNumber},#{shelfNumber},#{placeNumber},#{instockTime})
+      insert into  stock (productId,amount,areaNumber,shelfNumber,placeNumber,inStockTime)
+      values (#{productId},#{amount},#{areaNumber},#{shelfNumber},#{placeNumber},#{inStockTime})
  </insert>
  <delete id="deleteById" parameterType="int">
       delete from stock where id=#{id}

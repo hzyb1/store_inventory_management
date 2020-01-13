@@ -2,7 +2,7 @@ package model;
 
 public class OutStockDetail {
 	private int id;
-	private int outstockId;
+	private int outStockId;
 	private int productId;
 	private int amount;
 	public int getId() {
@@ -12,12 +12,13 @@ public class OutStockDetail {
 		this.id = id;
 	}
 
-	public int getOutstockId() {
-		return outstockId;
+	public int getOutStockId() {
+		return outStockId;
 	}
-	public void setOutstockId(int outstockId) {
-		this.outstockId = outstockId;
+	public void setOutStockId(int outStockId) {
+		this.outStockId = outStockId;
 	}
+
 	public int getProductId() {
 		return productId;
 	}

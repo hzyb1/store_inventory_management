@@ -112,4 +112,24 @@ public class ProductServiceImpl implements ProductService{
   	return productVos;
 	}
 
+
+	@Override
+	public List<Product> listAllProduct() {
+		List<Product> products;
+	      try {
+			sqlSession=DBTools.getSession();
+			ProductMapper productMapper =sqlSession.getMapper(ProductMapper.class);
+			products = productMapper.selectAllProduct();
+			
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+		   return null;
+		}finally{
+			sqlSession.close();
+		}
+	  	return products;
+	}
+
 }
