@@ -8,8 +8,8 @@
         select * from instock where id=#{id}
 
 </select>
-<select id="selectAll" resultType="po.InStockVo">
-   select  product.name , supplier.name ,approver , instockdetail.amount ,completeTime  
+<select id="selectAllInStock" resultType="po.InStockVo">
+   select  product.name productName, supplier.name ,approver supplierName , instockdetail.amount ,completeTime  
   from  instock ,instockdetail ,product, supplier
    where instockdetail.id=instock.id 
       and instockdetail.productid=product.id
@@ -25,6 +25,7 @@
  <insert id="insertInStock" useGeneratedKeys="true" keyProperty="id">
       insert into  instock (supplierId,completeTime,approver)
       values (#{supplierId},#{completeTime},#{approver})
+
  </insert>
 <delete id="deleteById" parameterType="int">
     delete from instock where id=#{id}

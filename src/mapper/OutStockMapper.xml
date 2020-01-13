@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.OutStockMapper"> 
+
+<select id="selectById" parameterType="int" resultType="model.OutStock">
+
+        select * from outstock where id=#{id}
+
+</select>
+<select id="selectAllOutStock" resultType="po.OutStockVo">
+  select  product.name productName,outstockdetail.amount,outstock.completetime,user.name approverName
+from  outstockdetail,outstock,product,user
+where outstockdetail.id=outstock.id 
+      and outstockdetail.productid=product.id
+      and user.id=outstock.id;
+</select>
+<update id="updateOutStock" parameterType="model.OutStock">
+     update outstock set completeTime=#{completeTime},approver=#{approver}
+     where id=#{id}
+
+
+</update>
+ <insert id="insertOutStock" useGeneratedKeys="true" keyProperty="id">
+      insert into  outstock(completeTime,approver)
+      values (#{completeTime},#{approver})
+ </insert>
+<delete id="deleteOutStock" parameterType="int">
+    delete from outstock where id= #{id}
+</delete>
+</mapper>

@@ -14,11 +14,15 @@ import org.apache.ibatis.session.SqlSession;
 
 
 
+
+
 import mapper.InStockDetailMapper;
 import mapper.InStockMapper;
+import mapper.OutStockMapper;
 import mapper.StockMapper;
 import model.InStock;
 import model.InStockDetail;
+import model.OutStock;
 import model.Stock;
 import service.StockService;
 import tools.DBTools;
@@ -28,6 +32,7 @@ public class StockServiceImpl implements StockService{
   StockMapper stockMapper;
   InStockMapper instockMaper;
   InStockDetailMapper instockdetailMapper;
+  OutStockMapper outStockMaper;
 	@Override
 	public List<Stock> selectAllStock() {
 		List<Stock> stock;
@@ -138,7 +143,7 @@ public class StockServiceImpl implements StockService{
 	      try {
 			sqlSession=DBTools.getSession();
 			InStockMapper instockMapper = sqlSession.getMapper(InStockMapper.class);
-			instock=instockMapper.selectAll();
+			instock=instockMapper.selectAllInStock();
 			
 		  } catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -175,6 +180,7 @@ public class StockServiceImpl implements StockService{
 			sqlSession=DBTools.getSession();
 			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
 			boolean state=instockMapper.insertInStock(instock);
+	         sqlSession.commit();
 			return state;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -193,6 +199,7 @@ public class StockServiceImpl implements StockService{
 			sqlSession=DBTools.getSession();
 			InStockMapper instockMapper=sqlSession.getMapper(InStockMapper.class);
 			boolean state=instockMapper.deleteById(id);
+	         sqlSession.commit();
 			return state;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -266,6 +273,7 @@ return false;
 			sqlSession=DBTools.getSession();
 			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
 			boolean state=instockdetailMapper.insertInStockDetail(instockdetail);
+	         sqlSession.commit();
 			return state;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -283,6 +291,7 @@ return false;
 			sqlSession=DBTools.getSession();
 			InStockDetailMapper instockdetailMapper = sqlSession.getMapper(InStockDetailMapper.class);
 			boolean state=instockdetailMapper.deleteById(id);
+	         sqlSession.commit();
 			return state;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -295,6 +304,98 @@ return false;
 		}
 		return false;
 
+	}
+
+	@Override
+	public OutStock selectOutStocktById(int id) {
+		try{
+			sqlSession=DBTools.getSession(); 
+			OutStockMapper outStockMapper=sqlSession.getMapper(OutStockMapper.class);
+			OutStock outStock = outStockMapper.selectById(id);
+			return outStock;
+		}catch(Exception e){
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+	}
+	}
+
+	@Override
+	public List<OutStock> selectAllOutStock() {
+		List<OutStock> outStock;
+	      try {
+			sqlSession=DBTools.getSession();
+			OutStockMapper outStockMapper=sqlSession.getMapper(OutStockMapper.class);
+			outStock=outStockMapper.selectAllOutStock();
+		  } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+		   return null;
+		}finally{
+			sqlSession.close();
+		}
+	  	return outStock;
+	}
+
+	@Override
+	public Boolean updateOutStock(OutStock outStock) {
+		try {
+			sqlSession=DBTools.getSession();
+			OutStockMapper outStockMapper=sqlSession.getMapper(OutStockMapper.class);
+       Boolean state=outStockMapper.updateOutStock(outStock);
+         sqlSession.commit();
+         return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	@Override
+	public Boolean insertOutStock(OutStock outStock) {
+		try {
+			sqlSession=DBTools.getSession();
+			OutStockMapper outStockMapper=sqlSession.getMapper(OutStockMapper.class);
+			boolean state=outStockMapper.insertOutStock(outStock);
+	         sqlSession.commit();
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+			return null;
+		}finally{
+			sqlSession.close();
+		}
+
+	}
+
+	@Override
+	public boolean deleteOutStock(int id) {
+		try {
+			sqlSession=DBTools.getSession();
+			OutStockMapper outStockMapper=sqlSession.getMapper(OutStockMapper.class);
+			boolean state=outStockMapper.deleteOutStock(id);
+	         sqlSession.commit();
+			return state;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			sqlSession.rollback();
+
+
+		}finally{
+			sqlSession.close();
+		}
+
+return false;	
 	}
 
 }
