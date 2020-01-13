@@ -5,8 +5,8 @@
  <select id="selectById" parameterType="int" resultType="model.Stock">
    select * from stock where id=#{id}
  </select>
- <select id="selectAll" resultType="model.Stock">
-      select productId,amount,areanumber,shelfnumber,placenumber,instocktime,name
+ <select id="selectAll" resultType="po.StockVo">
+      select stock.id,amount,areanumber,shelfnumber,placenumber,instocktime,name productName
       from product,stock 
       where stock.productId=product.id
  </select>

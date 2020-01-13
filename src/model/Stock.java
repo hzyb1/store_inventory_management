@@ -9,13 +9,20 @@ private int amount;
 private int areaNumber;
 private int shelfNumber;
 private int placeNumber;
+private Timestamp inStockTime;
+
+public Timestamp getInStockTime() {
+	return inStockTime;
+}
+public void setInStockTime(Timestamp inStockTime) {
+	this.inStockTime = inStockTime;
+}
 public int getPlaceNumber() {
 	return placeNumber;
 }
 public void setPlaceNumber(int placeNumber) {
 	this.placeNumber = placeNumber;
 }
-private Timestamp instockTime;
 public int getId() {
 	return id;
 }
@@ -46,12 +53,6 @@ public int getShelfNumber() {
 }
 public void setShelfNumber(int shelfNumber) {
 	this.shelfNumber = shelfNumber;
-}
-public Timestamp getInstockTime() {
-	return instockTime;
-}
-public void setInstockTime(Timestamp instockTime) {
-	this.instockTime = instockTime;
 }
 
 }

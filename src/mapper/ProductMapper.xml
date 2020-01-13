@@ -13,6 +13,9 @@ select * from product where id=#{id}
      from stock right join product on (product.id=stock.productId)
      group by product.id;
 </select>
+<select id="selectAllProduct" resultType="model.Product">
+     select * from product;
+</select>
 <update id="updateProduct" parameterType="model.Product">
      update product set name=#{name},price=#{price},barcode=#{barcode}
      where id=#{id}

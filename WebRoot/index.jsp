@@ -237,7 +237,7 @@
 						<a href="checkAllProduct" target="right">
 							<li>商品管理</li>
 						</a>
-						<a href="inventory.jsp" target="right">
+						<a href="checkAllStock" target="right">
 							<li>库存管理</li>
 						</a>
 						<a href="checkAllSupplier" target="right">
