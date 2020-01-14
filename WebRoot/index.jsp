@@ -243,6 +243,9 @@
 						<a href="checkAllInStock" target="right">
 							<li>入库管理</li>
 						</a>
+						<a href="checkAllOutStock" target="right">
+							<li>出库管理</li>
+						</a>
 						<a href="checkAllSupplier" target="right">
 							<li>供应商管理</li>
 						</a>

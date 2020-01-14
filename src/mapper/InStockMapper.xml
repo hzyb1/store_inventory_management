@@ -12,10 +12,13 @@
    select  instockdetail.id id,product.name productName, supplier.name supplierName,user.name approverName, instockdetail.amount ,completeTime  
   from  instock ,instockdetail ,product, supplier,user
    where instockdetail.inStockid=instock.id 
+   and instockdetail.productid=product.id
+      and instock.approver=supplier.id
+      and user.id = approver;
    </select>
 <select id="selectAllInStock" resultType="po.InStockVo">
    select  product.name productName, supplier.name ,approver supplierName , instockdetail.amount ,completeTime  
-  from  instock ,instockdetail ,product, supplier
+  from  instock ,instockdetail ,product, supplier,user
    where instockdetail.id=instock.id 
       and instockdetail.productid=product.id
       and instock.approver=supplier.id

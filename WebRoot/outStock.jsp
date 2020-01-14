@@ -31,11 +31,10 @@
 				<div class="tabs">
 					<div class="hd">
 						<ul>
-							<li class="" style="box-sizing: initial;-webkit-box-sizing: initial;">出库记录</li>
-							
+							<li class="on" style="box-sizing: initial;-webkit-box-sizing: initial;">出库记录</li>
 						</ul>
 					</div>
-					<div class="bd">
+					<div class="bd">		
 						<ul style="display: block;padding: 20px;">
 							<li>
 								<!--分页显示角色信息 start-->
@@ -52,7 +51,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<s:set name="OutStockVos" value="#session['outStockVos']" />
+											<s:set name="outStockVos" value="#session['outStockVos']" />
 											<s:iterator value ="outStockVos" var="mycontent" status="st" id="outStockVo">
 											<tr>
 												<td><s:property value="id" /></td>
@@ -71,9 +70,7 @@
 								<!--分页显示角色信息 end-->
 							</li>
 						</ul>		
-					</div>
-					</div>
-					</div>
+		
 					
 						
 			

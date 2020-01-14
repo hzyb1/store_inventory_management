@@ -128,27 +128,28 @@
 										<thead>
 											<tr>
 												<th>编号</th>
-												<th>商品名称 </th>
+												<th>商品名称</th>
 												<th>出库数量</th>
-												<th>操作人员</th>
+												<th>操作人</th>
 												<th>出库时间</th>
 												<th>删除</th>
 											</tr>
 										</thead>
 										<tbody>
-					
-											<s:set name="users" value="#session['users']" />
-											<s:iterator value ="users" var="mycontent" status="st" id="user">
+											<s:set name="outStockVos" value="#session['outStockVos']" />
+											<s:iterator value ="outStockVos" var="mycontent" status="st" id="outStockVo">
 											<tr>
 												<td><s:property value="id" /></td>
 												<td><s:property value="productName" /></td>
 												<td><s:property value="amount" /></td>
 												<td><s:property value="approverName" /></td>
 												<td><s:property value="completeTime" /></td>
-												<td class="delete"><button onclick="btn_delete(${user.id})"><i class="icon-trash bigger-120"></i>删除</button></td>
+												<td class="delete"><button onclick="btn_delete(${outStockVo.id})"><i class="icon-trash bigger-120"></i>删除</button></td>
 											</tr>
 											</s:iterator> 
+											
 										</tbody>
+									
 									</table>
 								</div>
 								<!--分页显示角色信息 end-->

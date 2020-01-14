@@ -185,7 +185,7 @@ public class StockServiceImpl implements StockService{
 				outStockDetail.setAmount(outStockPos.get(i).getAmount());
 				outStockDetail.setProductId(outStockPos.get(i).getProductId());
 				outStockDetailMapper.insertOutStockDetail(outStockDetail);
-				stockMapper.deleteById(outStockPos.get(0).getId());
+				stockMapper.deleteById(outStockPos.get(i).getId());
 				sqlSession.commit();
 			}
 		}catch(Exception e){

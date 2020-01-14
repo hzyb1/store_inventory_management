@@ -97,6 +97,7 @@
 		
 		<action name="deleteInStockDetail" class="action.StockAction" method="deleteInStockDetail">
 			<result name="success">/inStock.jsp</result>
+			<result name="error">/inStock.jsp</result>
 		</action>
 		<action name="addToOutList" class="action.StockAction" method="addToOutList">
 			<result name="success">/inventory.jsp</result>
@@ -107,7 +108,7 @@
 			<result name="error">/outStock.jsp</result>
 		</action>
 		<action name="checkAllOutStock" class="action.StockAction" method="checkAllOutStock">
-			<result name="success">/inStock.jsp</result>
+			<result name="success">/outStock.jsp</result>
 		</action>
 	</package>
 </struts>

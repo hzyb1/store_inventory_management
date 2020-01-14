@@ -34,7 +34,17 @@ public class StockAction {
 	private SupplierServiceImpl supplierServiceImpl = new SupplierServiceImpl();
 	private String message; 
 	private InStockPo inStockPo;
+	
+	List<OutStockVo> outStockVos;
+	
+	
 
+	public List<OutStockVo> getOutStockVos() {
+		return outStockVos;
+	}
+	public void setOutStockVos(List<OutStockVo> outStockVos) {
+		this.outStockVos = outStockVos;
+	}
 	public InStockPo getInStockPo() {
 		return inStockPo;
 	}
@@ -202,7 +212,8 @@ public class StockAction {
 		System.out.println(id+"ccccc");
 		OutStockPo outStockPo = stockServiceImpl.addToOutList(id);
 		outStockPo.setApproverName(user.getName());
-		outStockPo.setId(outStockList.size()+1);
+		outStockPo.setApproverId(user.getId());
+//		outStockPo.setId(outStockList.size()+1);
 		outStockList.add(outStockPo);
 		message = "已加入出库单！";
 		return "success";
@@ -227,9 +238,10 @@ public class StockAction {
 	}
 	
 	public String checkAllOutStock() {
-		List<OutStockVo> outStockVos =  stockServiceImpl.selectAllOutStock();
-		if(outStockVos == null) outStockVos = new ArrayList<>();
-		ActionContext.getContext().put("inStockVos", outStockVos);
+		outStockVos =  stockServiceImpl.selectAllOutStock();
+		if(outStockVos != null)
+		ActionContext.getContext().put("outStockVos", outStockVos);
+		System.out.println(outStockVos.size()+"????"+outStockVos.get(1).getApproverName());
 		return "success";
 	}
 	
