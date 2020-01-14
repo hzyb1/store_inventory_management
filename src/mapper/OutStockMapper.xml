@@ -8,6 +8,13 @@
         select * from outstock where id=#{id}
 
 </select>
+
+<select id="selectByProductId" parameterType="int" resultType="model.OutStock">
+
+        select * from outstock where productId=#{productId}
+
+</select>
+
 <select id="selectAll" resultType="po.OutStockVo">
   select outstockdetail.id id, product.name productName,outstockdetail.amount,outstock.completetime completeTime,user.name approverName
  from outstockdetail,outstock,product,user 

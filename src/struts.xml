@@ -45,7 +45,10 @@
 		</action>
 		<action name="deleteProduct" class="action.ProductAction" method="deleteProduct">
 			<result name="success">/product.jsp</result>
+			<result name="error">/product.jsp</result>
+			
 		</action>
+		
 		<action name="updateProductForm" class="action.ProductAction" method="updateProductForm">
 			<result name="error" type="dispatcher">
 				<param name="location">/updateProduct.jsp</param>
@@ -68,6 +71,7 @@
 		</action>
 		<action name="deleteSupplier" class="action.SupplierAction" method="deleteSupplier">
 			<result name="success">/supplier.jsp</result>
+			<result name="error">/supplier.jsp</result>
 		</action>
 		<action name="updateSupplierForm" class="action.SupplierAction" method="updateSupplierForm">
 			<result name="error" type="dispatcher">
@@ -82,6 +86,10 @@
 		
 		<action name="checkAllStock" class="action.StockAction" method="checkAllStock">
 			<result name="success">/inventory.jsp</result>
+		</action>
+		<action name="deleteStock" class="action.StockAction" method="deleteStock">
+			<result name="success">/inventory.jsp</result>
+			<result name="error">/inventory.jsp</result>
 		</action>
 		
 		<action name="addToInList" class="action.StockAction" method="addToInList">

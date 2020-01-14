@@ -115,6 +115,7 @@ public class ProductAction {
 			message = "É¾³ý³É¹¦";
 			return "success";
 		} else {
+			message = "É¾³ýÊ§°Ü";
 			return "error";
 		}
 	}

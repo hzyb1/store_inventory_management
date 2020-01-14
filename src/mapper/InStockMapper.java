@@ -12,4 +12,5 @@ public interface InStockMapper {
 	public boolean updateInStock(InStock inStock);
 	public boolean insertInStock(InStock inStock);
 	public boolean deleteById(int id);
+	public List<InStock> selectByProductId(int id);
 }

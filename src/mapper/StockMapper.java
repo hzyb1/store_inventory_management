@@ -4,6 +4,7 @@ import java.util.List;
 
 import po.OutStockPo;
 import po.StockVo;
+import model.InStock;
 import model.Stock;
 
 public interface StockMapper {
@@ -14,5 +15,5 @@ public interface StockMapper {
 	public boolean deleteById(int id);
 	public OutStockPo selectOutStockPo(int id);
 	
-	
+	public List<Stock> selectByProductId(int id);
 }

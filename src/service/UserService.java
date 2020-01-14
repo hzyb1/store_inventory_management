@@ -7,6 +7,6 @@ public interface UserService {
 	public Boolean addUser(User user);	//添加用户	
 	public Boolean updateUser(User user);	//更新用户
 	public User selectUserById(int id);	//选择
-	public List<User> selectAllUser();
-	public boolean deleteUser(int id);
+	public List<User> selectAllUser();	//查找所有用户
+	public boolean deleteUser(int id);	//删除用户
 }

@@ -33,7 +33,6 @@
 						<ul>
 							<li class="on" style="box-sizing: initial;-webkit-box-sizing: initial;">库存管理</li>
 							<li class="" style="box-sizing: initial;-webkit-box-sizing: initial;">出库单</li>
-							<li class="" style="box-sizing: initial;-webkit-box-sizing: initial;">出库记录</li>
 						</ul>
 					</div>
 					<div class="bd">
@@ -119,43 +118,7 @@
 								</div>
 								<!--分页显示角色信息 end-->
 							</li>
-						</ul>
-				<ul style="display: block;padding: 20px;">
-							<li>
-								<!--分页显示角色信息 start-->
-								<div id="dv1">
-									<table class="table" id="tbRecord">
-										<thead>
-											<tr>
-												<th>编号</th>
-												<th>商品名称</th>
-												<th>出库数量</th>
-												<th>操作人</th>
-												<th>出库时间</th>
-												<th>删除</th>
-											</tr>
-										</thead>
-										<tbody>
-											<s:set name="outStockVos" value="#session['outStockVos']" />
-											<s:iterator value ="outStockVos" var="mycontent" status="st" id="outStockVo">
-											<tr>
-												<td><s:property value="id" /></td>
-												<td><s:property value="productName" /></td>
-												<td><s:property value="amount" /></td>
-												<td><s:property value="approverName" /></td>
-												<td><s:property value="completeTime" /></td>
-												<td class="delete"><button onclick="btn_delete(${outStockVo.id})"><i class="icon-trash bigger-120"></i>删除</button></td>
-											</tr>
-											</s:iterator> 
-											
-										</tbody>
-									
-									</table>
-								</div>
-								<!--分页显示角色信息 end-->
-							</li>
-						</ul>
-				
+						</ul>	
 			</div>
 
 			
@@ -177,7 +140,16 @@
 				$.jq_Confirm({
 						message: "您确定要删除吗?",
 						btnOkClick: function() {
-							window.location.href='deleteUser.action?id='+id;
+							window.location.href='deleteStock.action?id='+id;
+							
+						}
+					});
+				}		
+				var btn_delete5 = function(id) {
+				$.jq_Confirm({
+						message: "您确定要删除吗?",
+						btnOkClick: function() {
+							window.location.href='deleteOutStockList.action?id='+id;
 							
 						}
 					});

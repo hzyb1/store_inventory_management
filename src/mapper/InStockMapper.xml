@@ -8,6 +8,14 @@
         select * from instock where id=#{id}
 
 </select>
+
+<select id="selectByProductId" parameterType="int" resultType="model.InStock">
+
+        select * from instock where productId=#{productId}
+
+</select>
+
+
 <select id="selectAll" resultType="po.InStockVo">
    select  instockdetail.id id,product.name productName, supplier.name supplierName,user.name approverName, instockdetail.amount ,completeTime  
   from  instock ,instockdetail ,product, supplier,user

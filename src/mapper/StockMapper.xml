@@ -6,6 +6,12 @@
    select * from stock where id=#{id}
  </select>
  
+ <select id="selectByProductId" parameterType="int" resultType="model.Stock">
+
+        select * from stock where productId=#{productId}
+
+</select>
+ 
   <select id="selectOutStockPo" parameterType="int" resultType="po.OutStockPo">
    select  stock.*,product.name productName
   from   stock ,product
